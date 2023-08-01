@@ -10,19 +10,23 @@ import {
   ParseIntPipe,
   HttpCode,
   HttpStatus,
+  Query,
 } from '@nestjs/common';
 import { BookmarkService } from './bookmark.service';
 import { JwtGuard } from '@/auth/guard';
 import { BookmarkDto, editBookmarkDto } from './dto';
 import { GetUser } from '@/auth/decorator';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('3. Bookmark')
+@ApiBearerAuth()
 @Controller('bookmark')
 @UseGuards(JwtGuard)
 export class BookmarkController {
   constructor(private bookmarkService: BookmarkService) {}
 
   @Post()
-  createBookmark(@GetUser('id') userId: number, @Body() dto: BookmarkDto) {
+  createBookmark(@GetUser('id') userId: number, @Query() dto: BookmarkDto) {
     return this.bookmarkService.createBookmark(userId, dto);
   }
 

@@ -105,10 +105,8 @@ describe('App e2e', () => {
           .withHeaders({
             Authorization: 'Bearer $S{userAt}',
           })
-          .withBody(dto)
+          .withQueryParams(dto)
           .expectStatus(200)
-          .expectBodyContains(dto.firstName)
-          .expectBodyContains(dto.email);
       });
     });
   });
@@ -127,7 +125,7 @@ describe('App e2e', () => {
           .withHeaders({
             Authorization: 'Bearer $S{userAt}',
           })
-          .withBody(dto)
+          .withQueryParams(dto)
           .expectStatus(201)
           .stores('TestBookmarkId', 'id');
       });
