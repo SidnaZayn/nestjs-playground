@@ -10,6 +10,7 @@ async function bootstrap() {
       whitelist: true,
     }),
   );
+  app.setGlobalPrefix('api')
 
   const config = new DocumentBuilder()
     .setTitle('Bookmark Docs')
@@ -18,7 +19,7 @@ async function bootstrap() {
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document,{
+  SwaggerModule.setup('docs', app, document,{
     swaggerOptions:{
       tagsSorter:'alpha',
       operationsSorter:'alpha'
